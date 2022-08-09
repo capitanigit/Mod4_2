@@ -1,5 +1,4 @@
 #Mod 4 zad 2
-import sys
 import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s', filename="calc_logfile.log")
 
@@ -17,11 +16,12 @@ def iloraz(x, y):
     return x / y
 
 print("Wybierz działanie: 1. Dodawanie, 2. Odejmowanie, 3. Mnożenie, 4. Dzielenie")
-while True:
-    act = input("Wybierz działanie 1/2/3/4): ")
-    if act in ('1', '2', '3', '4'):
-        num1 = float(input("Wpisz pierwszą liczbę: "))
-        num2 = float(input("Wpisz drugą liczbę: "))
+if __name__ == "__main__":
+    while True:
+        act = input("Wybierz działanie 1/2/3/4): ")
+        if act in ('1', '2', '3', '4'):
+            num1 = float(input("Wpisz pierwszą liczbę: "))
+            num2 = float(input("Wpisz drugą liczbę: "))
         if act == '1':
             print(f"Dodawanie", num1, "i", num2, "=", dodawanie(num1, num2))
         elif act == '2':
@@ -29,9 +29,12 @@ while True:
         elif act == '3':
             print(f"Mnożenie", num1, "*", num2, "=", iloczyn(num1, num2))
         elif act == '4':
+            while num2 == 0:
+                print ("Nie można dzielić przez 0")
+                num2 = float(input("Wpisz drugą liczbę: "))
             print(f"Dzielenie", num1, "/", num2, "=", iloraz(num1, num2))
         act_next = input("Czy chcesz wykonać kolejne obliczenia ? (tak/nie): ")
         if act_next == "nie":
-          break
+            break
     else:
         print("zły wybór ;]")
